@@ -51,6 +51,8 @@ frontend/build/
 # Logs
 *.log
 logs/
+backend/backend.log
+frontend/frontend.log
 
 # Testing
 coverage/

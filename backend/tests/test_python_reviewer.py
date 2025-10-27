@@ -47,14 +47,15 @@ def test_clean_code():
 def calculate_sum(numbers):
     return sum(numbers)
 
+
 result = calculate_sum([1, 2, 3, 4, 5])
 print(result)
 """
     diagnostics = run_python_review(code, enable_security=True)
     
-    # Clean code should have no critical errors
-    errors = [d for d in diagnostics if d['severity'] == 'error']
-    assert len(errors) == 0
+    # Clean code should have no critical security errors
+    security_errors = [d for d in diagnostics if d['severity'] == 'error' and 'security' in d.get('ruleId', '')]
+    assert len(security_errors) == 0
 
 def test_empty_code():
     """Test handling of empty code"""

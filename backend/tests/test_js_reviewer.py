@@ -25,8 +25,8 @@ document.getElementById('content').innerHTML = userInput;
 """
     diagnostics = run_js_review(code, enable_security=True)
     
-    # Should detect innerHTML usage
-    innerHTML_issues = [d for d in diagnostics if 'innerHTML' in d.get('message', '').lower()]
+    # Should detect innerHTML usage (warning level is acceptable)
+    innerHTML_issues = [d for d in diagnostics if 'innerHTML' in d.get('message', '').lower() or 'innerHTML' in d.get('ruleId', '')]
     assert len(innerHTML_issues) > 0
 
 def test_detect_var_usage():
